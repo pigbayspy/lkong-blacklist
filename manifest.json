@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+    "name": "龙空黑名单过滤",
+    "version": "1.0",
+    "default_locale": "zh",
+    "description": "用于过滤龙空的黑名单用户发表的主题和回复",
+    "icons": {
+        "16": "images/filter_16/png",
+        "48": "images/filter_48.png",
+        "128": "images/filter_128.png"
+    },
+    "browser_action": {
+        "default_icon": {
+            "19": "images/filter_19.png",
+            "38": "iamges/filter_38.png"
+        },
+        "default_title": "龙空黑名单过滤"
+    },
+    "app": {
+        "background": {
+            "scripts": []
+        }
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://lkong.cn/*","http://lkong.cn/*"],
+            "js": []
+        }
+    ]
+}
