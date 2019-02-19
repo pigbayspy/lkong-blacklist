@@ -18,8 +18,16 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://lkong.cn/*", "http://lkong.cn/*"],
-            "js": ["js/filter.js"]
+            "matches": [
+                "https://lkong.cn/*",
+                "http://lkong.cn/*"
+            ],
+            "js": [
+                "js/filter.js"
+            ],
+            "css": [
+                "style/filter.css"
+            ]
         }
     ]
 }

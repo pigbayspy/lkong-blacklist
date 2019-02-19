@@ -1,0 +1,11 @@
+a, a:link, .onefeed a:not(.blacklist):hover, .onefeed .datatitle, .detail .userNums strong, .W_gotop span, .lkong_replynum a {
+    color: #0099CC;
+}
+
+a:not(.blacklist):hover {
+    text-decoration: underline;
+}
+
+.onefeed a:not(.blacklist):hover {
+    text-decoration: underline;
+}
