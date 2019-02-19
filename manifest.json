@@ -23,8 +23,8 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://lkong.cn/*","http://lkong.cn/*"],
-            "js": []
+            "matches": ["https://lkong.cn/*", "http://lkong.cn/*"],
+            "js": ["js/blacklist.js"]
         }
     ]
 }
