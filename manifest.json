@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "龙空黑名单过滤",
     "version": "1.0",
-    "default_locale": "zh",
+    "default_locale": "zh_CN",
     "description": "用于过滤龙空的黑名单用户发表的主题和回复",
     "icons": {
         "16": "images/filter_16.png",
