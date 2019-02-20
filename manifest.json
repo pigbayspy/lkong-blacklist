@@ -14,13 +14,14 @@
             "19": "images/filter_19.png",
             "38": "images/filter_38.png"
         },
-        "default_title": "龙空黑名单过滤"
+        "default_title": "龙空黑名单过滤",
+        "default_popup": "popup.html"
     },
     "content_scripts": [
         {
             "matches": [
-                "https://lkong.cn/*",
-                "http://lkong.cn/*"
+                "https://lkong.cn/\\d+",
+                "http://lkong.cn/\\d+"
             ],
             "js": [
                 "js/filter.js"

@@ -1,0 +1,30 @@
+html {
+    width: 320px;
+    border: none;
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+div.row {
+    margin-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+div.col {
+    margin-bottom: 0;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+div.card {
+    margin-bottom: 0;
+    margin-top: 0;
+}
