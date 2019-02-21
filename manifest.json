@@ -2,9 +2,9 @@
     "manifest_version": 2,
     "name": "龙空黑名单过滤",
     "short_name": "龙空黑名单",
-    "version": "1.0",
+    "version": "1.0.1",
     "default_locale": "zh_CN",
-    "description": "用于过滤龙空的黑名单用户发表的主题和回复",
+    "description": "用于过滤龙空的黑名单用户发表的主题和回复，将其内容模糊，或是直接去除",
     "icons": {
         "16": "images/filter_16.png",
         "48": "images/filter_48.png",
@@ -32,5 +32,6 @@
                 "style/filter.css"
             ]
         }
-    ]
+    ],
+    "permissions": ["storage"]
 }
