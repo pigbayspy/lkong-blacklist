@@ -51,7 +51,6 @@ let blacklist;
 //observer callback function
 const callback = function (mutationsList)
 {
-
     for (let mutation of mutationsList)
     {
         if (mutation.type === 'childList')
