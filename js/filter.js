@@ -118,24 +118,19 @@ const callback = function (mutationsList)
     }
 };
 
-function get_black_list()
+
+$.get("/setting/index.php", {
+    "mod": "ajax",
+    "action": "getblack"
+}).then(function (result)
 {
-    let req = new XMLHttpRequest();
-    req.open("GET", "/setting/index.php?mod=ajax&action=getblack", true);
-    req.send(null);
-    req.onreadystatechange = function ()
-    {
-        if (req.readyState === 4 && req.status === 200)
-        {
-            let html = document.createElement("html");
-            html.innerHTML = req.responseText;
-            let as = html.querySelectorAll("table>tbody>tr>td>a");
-            blacklist = new Set(Array.prototype.map.call(as, e => e.innerText));
+    let element = document.createElement("html");
+    element.innerHTML = result;
+    let elements = element.querySelectorAll("table>tbody>tr>td>a");
+    blacklist = new Set(Array.prototype.map.call(elements, e => e.innerText));
+}).then(function (result)
+{
+    const observer = new MutationObserver(callback);
+    observer.observe(document, config);
+});
 
-            const observer = new MutationObserver(callback);
-            observer.observe(document, config);
-        }
-    }
-}
-
-get_black_list();
