@@ -20,28 +20,26 @@
                 </p>
             </div>
             <div class="card-action">
-                <form>
-                    <div class="switch">
-                        <label class="blue-grey-text text-darken-4">
-                            移除
-                            <input type="checkbox" id="mode">
-                            <span class="lever"></span>
-                            模糊
+                <div class="switch">
+                    <label class="blue-grey-text text-darken-4">
+                        移除
+                        <input type="checkbox" id="mode">
+                        <span class="lever"></span>
+                        模糊
+                    </label>
+                </div>
+                <div id="blur_range_container" class="scale-transition">
+                    <p class="range-field">
+                        <label for="blur_range">
+                            <input type="range" id="blur_range" min="0" max="10"/>
                         </label>
-                    </div>
-                    <div id="blur_range_container" class="scale-transition">
-                        <p class="range-field">
-                            <label for="blur_range">
-                                <input type="range" id="blur_range" min="0" max="10"/>
-                            </label>
-                        </p>
-                    </div>
-                    <div>
-                        <button class="btn waves-effect waves-light" type="submit" name="action" id="save_settings">保存
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
-                </form>
+                    </p>
+                </div>
+                <div>
+                    <button class="btn waves-effect waves-light" name="action" id="save_settings">保存
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
