@@ -1,13 +1,13 @@
+a.blacklist:hover {
+    text-decoration: none;
+}
+
 .onefeed a.blacklist:hover {
     color: #000000;
 }
 
 .forummod .th_lz .pagetip a.blacklist:hover {
     color: #666666;
-}
-
-a.blacklist:hover {
-    text-decoration: none;
 }
 
 .onefeed a.blacklist:hover {
