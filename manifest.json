@@ -26,10 +26,23 @@
             ],
             "js": [
                 "js/jquery-3.3.1.js",
-                "js/filter.js"
+                "js/main_filter.js"
             ],
             "css": [
-                "style/filter.css"
+                "style/main_filter.css"
+            ]
+        },
+        {
+            "matches": [
+                "https://lkong.cn/thread/*",
+                "http://lkong.cn/thread/*"
+            ],
+            "css": [
+                "style/thread_filter.css"
+            ],
+            "js": [
+                "js/jquery-3.3.1.js",
+                "js/thread_filter.js"
             ]
         }
     ],

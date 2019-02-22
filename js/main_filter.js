@@ -106,6 +106,3 @@ $.get("/setting/index.php", param).then(function (result)
     });
     observer.observe(document, config);
 });
-
-
-
