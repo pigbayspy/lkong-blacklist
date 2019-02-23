@@ -1,17 +1,6 @@
 const scale_class = "scale-out";
 let mode_init = false;
 let blur_init = 5;
-chrome.storage.local.get({
-    "FILTER_MODE": mode_init,
-    "BLUR_SCALE": blur_init
-}, function (result)
-{
-    mode_init = result["FILTER_MODE"];
-    blur_init = result["BLUR_SCALE"];
-    console.log("query");
-    console.log(mode_init);
-    console.log(blur_init);
-});
 
 window.onload = function ()
 {
@@ -20,16 +9,20 @@ window.onload = function ()
     const range_container = document.getElementById("blur_range_container");
     const save = document.getElementById("save_settings");
 
-    console.log("init");
-    console.log(mode_init);
-    console.log(blur_init);
-
-    blur_range.value = blur_init;
-    mode.checked = mode_init;
-    if (!mode_init)
+    chrome.storage.local.get({
+        "FILTER_MODE": mode_init,
+        "BLUR_SCALE": blur_init
+    }, result =>
     {
-        range_container.classList.add(scale_class);
-    }
+        mode_init = result["FILTER_MODE"];
+        blur_init = result["BLUR_SCALE"];
+        blur_range.value = blur_init;
+        mode.checked = mode_init;
+        if (!mode_init)
+        {
+            range_container.classList.add(scale_class);
+        }
+    });
 
     mode.addEventListener("click", () =>
     {
