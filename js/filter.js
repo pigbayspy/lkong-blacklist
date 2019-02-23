@@ -127,15 +127,15 @@ const thread_filter = function (elements, blacklist)
     });
 };
 
-$.get("/setting/index.php", param).then(function (result)
+$.get("/setting/index.php", param).then(result =>
 {
     let element = document.createElement("html");
     element.innerHTML = result;
     let elements = element.querySelectorAll("table>tbody>tr>td>a");
     return new Set(Array.prototype.map.call(elements, e => e.innerText));
-}).then(function (blacklist)
+}).then(blacklist =>
 {
-    let observer = new MutationObserver(function (list)
+    let observer = new MutationObserver(list =>
     {
         let callback = null;
         switch (window.location.pathname.split("/")[1])
