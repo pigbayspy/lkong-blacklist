@@ -10,8 +10,6 @@ const param = {
     "mod": "ajax",
     "action": "getblack"
 };
-//blur filter
-const blur_filter = "blur(5px)";
 //black list class
 const black_list_class = "blacklist";
 // cursor style
@@ -28,8 +26,9 @@ const p = function (event)
     return false;
 };
 
-const forum_filter = function (elements, blacklist)
+const forum_filter = function (elements, blacklist, blur)
 {
+    let blur_filter = `blur(${blur}px)`;
     elements.filter(e => e.classList && e.classList.length > 0).forEach(e =>
     {
         if (e.classList.contains(posting))
@@ -86,8 +85,9 @@ const forum_filter = function (elements, blacklist)
     });
 };
 
-const thread_filter = function (elements, blacklist)
+const thread_filter = function (elements, blacklist, blur)
 {
+    let blur_filter = `blur(${blur})`;
     elements.filter(e => e.nodeType === Node.ELEMENT_NODE).forEach(e =>
     {
         if (e.parentElement && e.parentElement.id === "thefeed")
@@ -229,7 +229,7 @@ chrome.storage.local.get({
             {
                 if (m.type === "childList")
                 {
-                    callback(Array.from(m.addedNodes), blacklist);
+                    callback(Array.from(m.addedNodes), blacklist, blur);
                 }
             })
         });
