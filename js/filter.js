@@ -127,41 +127,112 @@ const thread_filter = function (elements, blacklist)
     });
 };
 
-$.get("/setting/index.php", param).then(result =>
+const forum_remover = function (elements, blacklist)
 {
-    let element = document.createElement("html");
-    element.innerHTML = result;
-    let elements = element.querySelectorAll("table>tbody>tr>td>a");
-    return new Set(Array.prototype.map.call(elements, e => e.innerText));
-}).then(blacklist =>
-{
-    let observer = new MutationObserver(list =>
+    elements.filter(e => e.classList && e.classList.length > 0).forEach(e =>
     {
-        let callback = null;
-        switch (window.location.pathname.split("/")[1])
+        if (e.classList.contains(posting))
         {
-            case "forum":
+            let author = e.children[0].children[2].children[0].children[0].innerText;
+            if (blacklist.has(author))
             {
-                callback = forum_filter;
-                break;
-            }
-            case "thread":
-            {
-                callback = thread_filter;
-                break;
+                e.remove();
             }
         }
-        if (callback === null)
+        else if (e.classList.contains(title))
         {
-            return;
-        }
-        list.forEach(m =>
-        {
-            if (m.type === "childList")
+            let author = e.children[1].children[0].children[0].innerText;
+            if (blacklist.has(author))
             {
-                callback(Array.from(m.addedNodes), blacklist);
+                e.remove();
             }
-        })
+        }
     });
-    observer.observe(document, config);
+};
+
+const thread_remover = function (elements, blacklist)
+{
+    elements.filter(e => e.nodeType === Node.ELEMENT_NODE).forEach(e =>
+    {
+        if (e.parentElement && e.parentElement.id === "thefeed")
+        {
+            Array.prototype.forEach.call(e.children, d =>
+            {
+                if (d === e.firstElementChild || d === e.lastElementChild)
+                {
+                    return;
+                }
+                let author = d.children[1].children[0].children[0].innerText;
+                if (blacklist.has(author))
+                {
+                    d.remove();
+                }
+            });
+        }
+    });
+};
+
+let mode = true;//true => blur
+let blur = 5;
+chrome.storage.local.get({
+    "FILTER_MODE": mode,
+    "BLUR_SCALE": blur
+}, result =>
+{
+    mode = result["FILTER_MODE"];
+    blur = result["BLUR_SCALE"];
+
+    $.get("/setting/index.php", param).then(result =>
+    {
+        let element = document.createElement("html");
+        element.innerHTML = result;
+        let elements = element.querySelectorAll("table>tbody>tr>td>a");
+        return new Set(Array.prototype.map.call(elements, e => e.innerText));
+    }).then(blacklist =>
+    {
+        let observer = new MutationObserver(list =>
+        {
+            let callback = null;
+            switch (window.location.pathname.split("/")[1])
+            {
+                case "forum":
+                {
+                    if (mode)
+                    {
+                        callback = forum_filter;
+                    }
+                    else
+                    {
+                        callback = forum_remover;
+                    }
+
+                    break;
+                }
+                case "thread":
+                {
+                    if (mode)
+                    {
+                        callback = thread_filter;
+                    }
+                    else
+                    {
+                        callback = thread_remover;
+                    }
+                    break;
+                }
+            }
+            if (callback === null)
+            {
+                return;
+            }
+            list.forEach(m =>
+            {
+                if (m.type === "childList")
+                {
+                    callback(Array.from(m.addedNodes), blacklist);
+                }
+            })
+        });
+        observer.observe(document, config);
+    });
 });
