@@ -13,3 +13,7 @@ a.blacklist:hover {
 .onefeed a.blacklist:hover {
     text-decoration: none;
 }
+
+div.black_posting{
+    cursor: pointer;
+}
