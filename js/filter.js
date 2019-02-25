@@ -12,12 +12,13 @@ const param = {
 };
 //black list class
 const black_list_class = "blacklist";
-// cursor style
-const pointer = "pointer";
 //主题栏 class
 const title = "onefeed";
 //帖子 class
 const posting = "st_post";
+//被过滤的主题
+const black_posting="black_posting";
+
 //functions
 const p = function (event)
 {
@@ -37,22 +38,21 @@ const forum_filter = function (elements, blacklist, blur)
             if (blacklist.has(author))
             {
                 e.style.filter = blur_filter;
-                e.style.cursor = pointer;
+                $(e).toggleClass(black_posting);
                 $("a", e).toggleClass(black_list_class);
                 e.addEventListener("click", p, true);
                 e.addEventListener("dblclick", function ()
                 {
+                    $(e).toggleClass(black_posting);
                     $("a", e).toggleClass(black_list_class);
                     if (e.style.filter.length === 0)
                     {
                         e.style.filter = blur_filter;
-                        e.style.cursor = pointer;
                         e.addEventListener("click", p, true);
                     }
                     else
                     {
                         e.style.filter = null;
-                        e.style.cursor = null;
                         e.removeEventListener("click", p, true);
                     }
                 });
@@ -87,7 +87,7 @@ const forum_filter = function (elements, blacklist, blur)
 
 const thread_filter = function (elements, blacklist, blur)
 {
-    let blur_filter = `blur(${blur})`;
+    let blur_filter = `blur(${blur}px)`;
     elements.filter(e => e.nodeType === Node.ELEMENT_NODE).forEach(e =>
     {
         if (e.parentElement && e.parentElement.id === "thefeed")
@@ -102,22 +102,21 @@ const thread_filter = function (elements, blacklist, blur)
                 if (blacklist.has(author))
                 {
                     d.style.filter = blur_filter;
-                    d.style.cursor = pointer;
+                    $(d).toggleClass(black_posting);
                     $("a", d).toggleClass(black_list_class);
                     d.addEventListener("click", p, true);
                     d.addEventListener("dblclick", function ()
                     {
                         $("a", d).toggleClass(black_list_class);
+                        $(d).toggleClass(black_posting);
                         if (d.style.filter.length === 0)
                         {
                             d.style.filter = blur_filter;
-                            d.style.cursor = pointer;
                             d.addEventListener("click", p, true);
                         }
                         else
                         {
                             d.style.filter = null;
-                            d.style.cursor = null;
                             d.removeEventListener("click", p, true);
                         }
                     });
