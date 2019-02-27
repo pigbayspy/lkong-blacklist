@@ -12268,7 +12268,7 @@ $jscomp.polyfill = function (e, r, p, m) {
               targets: this.thumb,
               height: 0,
               width: 0,
-              top: 10,
+              top: 40,
               easing: 'easeOutQuad',
               marginLeft: marginLeft,
               duration: 100
@@ -12317,7 +12317,7 @@ $jscomp.polyfill = function (e, r, p, m) {
           targets: this.thumb,
           height: 30,
           width: 30,
-          top: -30,
+          top: 25,
           marginLeft: marginLeft,
           duration: 300,
           easing: 'easeOutQuint'
