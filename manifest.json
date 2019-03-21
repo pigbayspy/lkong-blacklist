@@ -24,11 +24,7 @@
                 "https://lkong.cn/*",
                 "http://lkong.cn/*"
             ],
-            "css": [
-                "style/filter.css"
-            ],
             "js": [
-                "js/jquery-3.3.1.js",
                 "js/filter.js"
             ]
         }

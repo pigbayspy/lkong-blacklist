@@ -29,6 +29,6 @@ div.card {
     margin-top: 0;
 }
 
-input#blur_range {
-    padding-top: 40px;
+div.switch {
+    margin-bottom: 20px;
 }
