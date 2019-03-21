@@ -13,17 +13,22 @@ const posting = "st_post";
 //类型
 const childList = "childList";
 
+let mode = true;//true => remover
+let count = 0;//filter count
+
 const forum_remover = function (elements, blacklist)
 {
+    let i = 0;
     elements.filter(e => e.classList && e.classList.length > 0).forEach(e =>
     {
+
         if (e.classList.contains(posting))
         {
             let author = e.children[0].children[2].children[0].children[0].innerText;
             if (blacklist.has(author))
             {
                 e.remove();
-                console.log("remove "+author);
+                ++i;
             }
         }
         else if (e.classList.contains(title))
@@ -32,14 +37,18 @@ const forum_remover = function (elements, blacklist)
             if (blacklist.has(author))
             {
                 e.remove();
-                console.log("remove "+author);
+                ++i;
             }
         }
     });
+    count += i;
+    chrome.runtime.sendMessage({"FILTER_COUNT": count});
+    chrome.storage.local.set({"FILTER_COUNT":count});
 };
 
 const thread_remover = function (elements, blacklist)
 {
+    let i=0;
     elements.filter(e => e.nodeType === Node.ELEMENT_NODE).forEach(e =>
     {
         if (e.parentElement && e.parentElement.id === "thefeed")
@@ -50,23 +59,29 @@ const thread_remover = function (elements, blacklist)
                 {
                     return;
                 }
-                let author = d.children[1].children[0].children[0].innerText;
+                let author = d.querySelector("div>div>div>a>span").innerText;
+                console.log(author);
                 if (blacklist.has(author))
                 {
                     d.remove();
+                    ++i;
                 }
             });
         }
     });
+    count += i;
+    chrome.runtime.sendMessage({"FILTER_COUNT": count});
+    chrome.storage.local.set({"FILTER_COUNT":count});
 };
-
-let mode = true;//true => remover
 
 chrome.storage.local.get({
     "FILTER_MODE": mode,
+    "FILTER_COUNT": 0
 }, result =>
 {
     mode = result["FILTER_MODE"];
+    count = result["FILTER_COUNT"];
+
     if (mode)
     {
         fetch("/setting/index.php?mod=ajax&action=getblack").then(response =>
@@ -82,7 +97,7 @@ chrome.storage.local.get({
         {
             let observer = new MutationObserver(list =>
             {
-                let callback = null;
+                let callback;
                 switch (window.location.pathname.split("/")[1])
                 {
                     case "forum":
@@ -95,10 +110,15 @@ chrome.storage.local.get({
                         callback = thread_remover;
                         break;
                     }
+                    default:
+                    {
+                        callback = null;
+                        break;
+                    }
                 }
                 list.forEach(m =>
                 {
-                    if (m.type === childList)
+                    if (m.type === childList && callback !== null)
                     {
                         callback(Array.from(m.addedNodes), blacklist);
                     }
