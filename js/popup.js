@@ -3,9 +3,18 @@ let mode_init = false;
 
 window.onload = function ()
 {
+    M.AutoInit();
+
     const mode = document.getElementById("mode");
     const save = document.getElementById("save_settings");
     const count = document.getElementById("filter_count");
+
+    let tooltip = M.Tooltip.init(save, {
+        enterDelay: 100,
+        margin: 2,
+        position: "right",
+        outDuration: 150
+    }, false, false);
 
     chrome.storage.local.get({
         "FILTER_MODE": mode_init,
