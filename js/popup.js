@@ -15,7 +15,7 @@ window.onload = function ()
         mode_init = result["FILTER_MODE"];
         filter_count = result["FILTER_COUNT"];
         mode.checked = mode_init;
-        count.innerText=filter_count;
+        count.innerText = filter_count;
     });
 
     save.addEventListener("click", () =>
@@ -30,8 +30,8 @@ window.onload = function ()
     {
         if (message["FILTER_COUNT"])
         {
-            filter_count=message["FILTER_COUNT"];
-            count.innerText=filter_count;
+            filter_count = message["FILTER_COUNT"];
+            count.innerText = filter_count;
         }
     })
 };
