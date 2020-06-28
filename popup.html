@@ -1,49 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta http-equiv="Content-type" content="text/html" charset="UTF-8">
-    <title>弹出栏</title>
-    <link rel="stylesheet" type="text/css" href="style/icon.css">
-    <link rel="stylesheet" type="text/css" href="style/materialize.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="style/popup.css">
-</head>
-<body>
-<div class="row">
-    <div class="col s12 m6" style="padding-left: 0;padding-right: 0">
-        <div class="card">
-            <div class="card-content">
-                <span class="card-title blue-grey-text text-darken-4">
-                    龙空黑名单过滤器
-                </span>
-                <p class="blue-grey-text text-darken-3">
-                    该插件用于过滤龙空黑名单用户发表的主题和回帖。
-                </p>
-            </div>
-            <div class="card-action">
+    <head>
+        <meta http-equiv="Content-type" content="text/html" charset="UTF-8">
+        <title>弹出栏</title>
+        <link rel="stylesheet" type="text/css" href="style/icon.css">
+        <link rel="stylesheet" type="text/css" href="style/materialize.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="style/popup.css">
+    </head>
+    <body>
+    <div class="row">
+        <div class="col s12 m6" style="padding-left: 0;padding-right: 0">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title blue-grey-text text-darken-4">龙空黑名单过滤器</span>
+                    <p class="blue-grey-text text-darken-3">该插件用于过滤龙空黑名单用户发表的主题和回帖。</p>
+                </div>
+                <div class="card-action">
                 <span class="blue-grey-text text-darken-4">
                     已过滤黑名单用户 <i id="filter_count"></i> 次
                 </span>
-            </div>
-            <div class="card-action">
-                <div class="switch">
-                    <label class="blue-grey-text text-darken-4">
-                        关闭
-                        <input type="checkbox" id="mode">
-                        <span class="lever"></span>
-                        开启
-                    </label>
                 </div>
-                <div>
-                    <button class="btn waves-effect waves-light" name="action" id="save_settings" data-tooltip="刷新以应用">
-                        保存
-                        <i class="material-icons right">send</i>
-                    </button>
+                <div class="card-action">
+                    <div class="switch">
+                        <label class="blue-grey-text text-darken-4">
+                            关闭
+                            <input type="checkbox" id="mode">
+                            <span class="lever"></span>
+                            开启
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript" src="js/materialize.js"></script>
-<script type="text/javascript" src="js/popup.js"></script>
-</body>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+    </body>
 </html>
