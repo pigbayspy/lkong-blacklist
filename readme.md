@@ -1,6 +1,6 @@
 # Introduce
 
-[English](/readme.md) | [中文](readme.zh.md)
+[English](/readme.md) | [中文](/doc/readme.zh.md)
 
 ![](/src/images/filter_48.png)
 
